@@ -6,11 +6,10 @@ import anime from 'animejs';
 
 function App() {
 
-  const lettersRef = useRef();
+  const lettersRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-
-    if (lettersRef.current) {
+    if (lettersRef.current && lettersRef.current.textContent) {
       lettersRef.current.innerHTML = lettersRef.current.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
 
       anime.timeline({loop: true})
