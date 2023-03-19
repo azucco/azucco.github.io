@@ -1,33 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useRef, useEffect } from 'react'
 import './App.css'
+import './scss/comingSoon.scss'
+import anime from 'animejs';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const lettersRef = useRef();
+
+  useEffect(() => {
+
+    if (lettersRef.current) {
+      lettersRef.current.innerHTML = lettersRef.current.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+      anime.timeline({loop: true})
+        .add({
+          targets: '.ml11 .line',
+          scaleY: [0,1],
+          opacity: [0.5,1],
+          easing: "easeOutExpo",
+          duration: 700
+        })
+        .add({
+          targets: '.ml11 .line',
+          translateX: [0, lettersRef.current.getBoundingClientRect().width + 10],
+          easing: "easeOutExpo",
+          duration: 700,
+          delay: 100
+        }).add({
+          targets: '.ml11 .letter',
+          opacity: [0,1],
+          easing: "easeOutExpo",
+          duration: 600,
+          offset: '-=775',
+          delay: (el, i) => 34 * (i+1)
+        }).add({
+          targets: '.ml11',
+          opacity: 0,
+          duration: 1000,
+          easing: "easeOutExpo",
+          delay: 1000
+        });
+    }
+  }, [lettersRef]); 
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1 className="ml11">
+        <span className="text-wrapper">
+          <span className="line line1"></span>
+          <span ref={lettersRef} className="letters">Coming soon</span>
+        </span>
+      </h1>
     </div>
   )
 }
