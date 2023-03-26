@@ -1,7 +1,13 @@
 header {
-    background-color: red;
-    height: 90px;
-    width: 100%;
+    box-sizing: border-box;
     position: fixed;
-    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    justify-content: end;
+
+    a {
+        color: $primary-color;
+    }
 }
