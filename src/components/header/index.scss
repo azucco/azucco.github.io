@@ -1,11 +1,13 @@
 header {
-    box-sizing: border-box;
-    position: fixed;
-    width: 100%;
-    box-sizing: border-box;
+    // box-sizing: border-box;
+    // position: fixed;
+    // width: 100%;
+    // box-sizing: border-box;
     padding: 10px;
     display: flex;
     justify-content: end;
+
+    border: solid 10px $primary-color;
 
     a {
         color: $primary-color;
