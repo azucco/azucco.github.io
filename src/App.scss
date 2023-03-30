@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,28 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+#hl {
+  // height: 47%;
+  background-color: orange;
+  border: solid 2px red;
+}
+
+#hr {
+  // height: 47%;
+  background-color: violet;
+  border: solid 2px purple;
+}
+
+#ll {
+  // height: 47%;
+  background-color: greenyellow;
+  border: solid 2px green;
+}
+
+#lr {
+  // height: 47%;
+  background-color: lightgray;
+  border: solid 2px grey;
 }
