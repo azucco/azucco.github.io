@@ -1,10 +1,12 @@
 import './index.scss';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Header () {
     return (
         <header>
-            <a href='https://github.com/azucco/azucco.github.io' target="_blank"><GitHubIcon fontSize="large"></GitHubIcon></a>
+            <a href='https://github.com/azucco/azucco.github.io' target="_blank">
+                <LinkedInIcon fontSize="large"></LinkedInIcon>
+            </a>
         </header>
     )
 }

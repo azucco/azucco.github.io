@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{ bgcolor: 'yellow', height: '100vh' }}>
+      {/* <Box sx={{ bgcolor: 'yellow', height: '100vh' }}> */}
         <Grid container>
           <Grid xs={12}>
             <Header></Header>
@@ -18,7 +18,7 @@ function App() {
           <Grid id='ll' xs={12} md={6}>LL</Grid>
           <Grid id='lr' xs={12} md={6}>LR</Grid>
         </Grid>
-      </Box>
+      {/* </Box> */}
     </div>
   )
 }
