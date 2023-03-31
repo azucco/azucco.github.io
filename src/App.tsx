@@ -1,4 +1,4 @@
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Box } from '@mui/material';
 import './App.scss';
 import Title from './components/title';
 import AppBar from './components/AppBar';
@@ -9,10 +9,15 @@ function App() {
   return (
     <div className="App">
       <AppBar></AppBar>
+      <Container fixed maxWidth="lg" sx={{ bgcolor: '#cfe8fc', marginTop: '64px'}}>
+        {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
+        <Grid container>
+          <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
+          <Grid id='hr' xs={12} md={6}>HR</Grid>
+        </Grid>
+      </Container>
         {/* <Grid container>
-          <Grid xs={12}>
-            <Header></Header>
-          </Grid>
+        
           <Container maxWidth="lg">
             <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
             <Grid id='hr' xs={12} md={6}>HR</Grid>
