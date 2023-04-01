@@ -1,30 +1,25 @@
-import { Grid, Container, Box } from '@mui/material';
+import { Grid, Container, Divider } from '@mui/material';
 import './App.scss';
-import Title from './components/title';
+import Title from './components/Title';
 import AppBar from './components/AppBar';
+import * as SK from './components/SkillCard';
+import CareerStepper from './components/CareerStepper';
+import skills from './data';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
     <div className="App">
       <AppBar></AppBar>
-      <Container fixed maxWidth="lg" sx={{ bgcolor: '#cfe8fc', marginTop: '64px'}}>
-        {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
+      <Container fixed maxWidth="lg" sx={{ marginTop: '64px'}}>
         <Grid container>
           <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
           <Grid id='hr' xs={12} md={6}>HR</Grid>
+          { 
+            skills.map((skill) => <Grid xs={12} md={3}><SK.SkillCard {...skill}></SK.SkillCard></Grid>) 
+          }
         </Grid>
+        <CareerStepper></CareerStepper>
       </Container>
-        {/* <Grid container>
-        
-          <Container maxWidth="lg">
-            <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
-            <Grid id='hr' xs={12} md={6}>HR</Grid>
-            <Grid id='ll' xs={12} md={6}>LL</Grid>
-            <Grid id='lr' xs={12} md={6}>LR</Grid>
-          </Container>
-        </Grid> */}
     </div>
   )
 }
