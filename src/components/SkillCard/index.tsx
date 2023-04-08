@@ -12,9 +12,9 @@ export type skillCardContent = {
 
 export function SkillCard({title, topic, content} :skillCardContent) {
   return (
-    <Card sx={{ bgcolor: '#252529', color: 'white', borderRadius: '20px'}}>
+    <Card>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
+        <Typography gutterBottom>
           {topic}
         </Typography>
         <Typography variant="h5" component="div">

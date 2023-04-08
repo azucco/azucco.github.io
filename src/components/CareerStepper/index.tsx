@@ -78,8 +78,8 @@ const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad']
 
 export default function CustomizedSteppers() {
   return (
-    <Stack sx={{ width: '100%', bgcolor: '#252529', color: 'white', borderRadius: '20px'}} spacing={4} >
-      <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
+    <Stack spacing={4}>
+      <Stepper alternativeLabel activeStep={2} connector={<ColorlibConnector />}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
