@@ -1,9 +1,9 @@
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Typography } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
 import * as SK from './components/SkillCard';
-import CareerStepper from './components/CareerStepper';
-import skills from './data';
+import * as ET from './components/ExperienceTimeline';
+import * as data from './data';
 
 import { red } from '@mui/material/colors';
 import { Theme, ThemeProvider, createTheme } from '@mui/material/styles';
@@ -32,12 +32,23 @@ function App() {
           <Grid container>
             <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
             <Grid id='hr' xs={12} md={6}></Grid>
+            <Grid id='hr' xs={12} md={12}>
+              <Typography variant="h3">
+                Skills              
+              </Typography>
+            </Grid>
+            
             { 
-              skills.map((skill) => <Grid xs={12} md={4}><SK.SkillCard {...skill}></SK.SkillCard></Grid>) 
+              data.skills.map((skill) => <Grid xs={12} md={4}><SK.SkillCard {...skill}></SK.SkillCard></Grid>) 
             }
           </Grid>
           <Grid container>
-            <CareerStepper></CareerStepper>
+            <Grid xs={12} md={6}>
+              <Typography variant="h3">
+                  Experience and education              
+              </Typography>
+              <ET.ExperienceTimeline></ET.ExperienceTimeline>
+            </Grid>
           </Grid>
         </Container>
       </div>

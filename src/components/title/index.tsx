@@ -24,6 +24,12 @@ function Title () {
                 variant="contained"
             >
                 Let the code speaks
+            </Button> 
+            <Button
+                size="large"
+                variant="contained"
+            >
+                Donwload my resume
             </Button>  
         </>
     )

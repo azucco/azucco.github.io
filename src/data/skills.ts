@@ -14,7 +14,7 @@ const skills :SK.skillCardContent[] = [
     {
         title: 'React', 
         topic: 'Frontend', 
-        content: 'The library I enjoy the most. Next step: improve TypeScript integration knowledge.'
+        content: 'The library I enjoy the most. Next step: improve TypeScript integration knowledge💪.'
     },
     {
         title: 'NodeJS', 
@@ -24,7 +24,7 @@ const skills :SK.skillCardContent[] = [
     {
         title: 'PHP', 
         topic: 'Backend', 
-        content: "One of the first languages ​​I learned. I still use it with joy, as long as it's PHP 8."
+        content: "One of the first languages ​I learned. I still use it with joy, as long as it's PHP 8."
     },
     {
         title: 'SQL', 
