@@ -1,18 +1,39 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+import { styled } from '@mui/material/styles';
 
 export type skillCardContent = {
     title: string, 
     topic: string, 
-    content: string
+    content: string;
+    rating: 1 | 2 | 3 | 4 | 5,
+    color: string;
 }
 
 export const id: string = 'skills';
 
-export function SkillCard({title, topic, content} :skillCardContent) {
+interface StyledRating {
+  color: string;
+}
+
+const StyledRating = styled(
+  ({ color, ...other } : any) => <Rating {...other} />)({ // TODO: fix type
+  '& .MuiRating-decimal': {
+    width: '20%',
+  },
+  '& .MuiRating-iconFilled': {
+    backgroundColor: (props: StyledRating) => props.color,
+  },
+  '& .MuiRating-iconEmpty': {
+    backgroundColor: '#32a852',
+  },
+});
+
+const RatingElement = () => <div style={{ height: '10px' }}></div>
+
+export function SkillCard({title, topic, content, rating, color} :skillCardContent) {
   return (
     <Card>
       <CardContent>
@@ -29,9 +50,16 @@ export function SkillCard({title, topic, content} :skillCardContent) {
           {content}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Proficency</Button>
-      </CardActions>
+      <StyledRating
+        color={color}
+        defaultValue={rating}
+        readOnly 
+        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+        precision={0.5}
+        sx={{display: 'flex'}}
+        icon={<RatingElement />}
+        emptyIcon={<RatingElement />}
+      />
     </Card>
   );
 }
