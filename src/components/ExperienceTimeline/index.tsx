@@ -24,9 +24,11 @@ export type ExperienceTimelineItem = {
     type: 'focusOn' | 'beyond'; 
 }
 
-function ExperienceTimelineItem ({years, Icon, company, job, description, isTop} :ExperienceTimelineItem & { isTop :boolean }) :JSX.Element {
+export const id: string = 'experience';
+
+function ExperienceTimelineItem ({years, Icon, company, job, description, type, isTop} :ExperienceTimelineItem & { isTop :boolean }) :JSX.Element {
     return (
-        <TimelineItem>
+        <TimelineItem position={ type === 'focusOn' ? 'left' : 'right'}>
             <TimelineOppositeContent
                 sx={{ m: 'auto 0' }}
                 align="right"
@@ -55,13 +57,7 @@ function ExperienceTimelineItem ({years, Icon, company, job, description, isTop}
 
 export function ExperienceTimeline () {
     return (
-        <Timeline 
-            sx={{
-                [`& .${timelineOppositeContentClasses.root}`]: {
-                flex: 0.2,
-                },
-            }}
-        >
+        <Timeline>
             {
                 data.experiences.map((experience, index) => <ExperienceTimelineItem {...experience } isTop={index === 0} key={index}></ExperienceTimelineItem>)
             }

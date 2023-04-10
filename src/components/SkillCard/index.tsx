@@ -10,6 +10,8 @@ export type skillCardContent = {
     content: string
 }
 
+export const id: string = 'skills';
+
 export function SkillCard({title, topic, content} :skillCardContent) {
   return (
     <Card>

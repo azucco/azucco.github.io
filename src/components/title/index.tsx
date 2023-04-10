@@ -27,9 +27,9 @@ function Title () {
             </Button> 
             <Button
                 size="large"
-                variant="contained"
+                variant="outlined"
             >
-                Donwload my resume
+                My resume
             </Button>  
         </>
     )

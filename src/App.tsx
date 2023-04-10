@@ -33,7 +33,7 @@ function App() {
             <Grid id='hl' xs={12} md={6}><Title></Title></Grid>
             <Grid id='hr' xs={12} md={6}></Grid>
             <Grid id='hr' xs={12} md={12}>
-              <Typography variant="h3">
+              <Typography id={SK.id} variant="h3">
                 Skills              
               </Typography>
             </Grid>
@@ -43,8 +43,8 @@ function App() {
             }
           </Grid>
           <Grid container>
-            <Grid xs={12} md={6}>
-              <Typography variant="h3">
+            <Grid xs={12} md={12}>
+              <Typography id={ET.id} variant="h3">
                   Experience and education              
               </Typography>
               <ET.ExperienceTimeline></ET.ExperienceTimeline>
