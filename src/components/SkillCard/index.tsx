@@ -36,7 +36,7 @@ const StyledRating = styled(
 
 const RatingElement = () => <div style={{ height: '10px' }}></div>
 
-export function SkillCard({ title, topic, content, rating, color }: skillCardContent) {
+export function SkillCard({ title, topic, content, rating, color, isVisible }: skillCardContent & {isVisible: boolean}) {
   return (
     <Card>
       <CardContent>
@@ -58,7 +58,7 @@ export function SkillCard({ title, topic, content, rating, color }: skillCardCon
         defaultValue={rating}
         readOnly
         precision={0.5}
-        sx={{ display: 'flex' }}
+        sx={{ display: 'flex', transition: 'left 5s', left: isVisible ? '0px' : '-200px' }}
         icon={<RatingElement />}
         emptyIcon={<RatingElement />}
       />

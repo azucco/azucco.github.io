@@ -6,6 +6,7 @@ import * as ET from './components/ExperienceTimeline';
 import * as data from './data';
 import { Theme, ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import useElementOnScreen from './hook/useElementOnScreen';
 
 const theme :Theme = createTheme({
   palette: {
@@ -23,6 +24,13 @@ const theme :Theme = createTheme({
 });
 
 function App() {
+
+  const [ containerRef, isVisible ] = useElementOnScreen({
+    root: null,
+    rootMargin: "0px",
+    threshold: 1.0
+  })
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -32,14 +40,14 @@ function App() {
           <Grid container>
             <Grid item xs={12} md={6}><Title></Title></Grid>
             <Grid item xs={12} md={6}></Grid>
-            <Grid item xs={12} md={12}>
+            <Grid ref={containerRef} item xs={12} md={12}>
               <Typography id={SK.id} variant="h3">
-                Skills and proficency         
+                Skills and proficency { isVisible ? 'visibile' : 'not visible'}   
               </Typography>
             </Grid>
             
             { 
-              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SK.SkillCard {...skill}></SK.SkillCard></Grid>) 
+              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SK.SkillCard {...skill} isVisible={isVisible}></SK.SkillCard></Grid>) 
             }
           </Grid>
           <Grid container>
