@@ -45,7 +45,6 @@ function App() {
                 Skills and proficency { isVisible ? 'visibile' : 'not visible'}   
               </Typography>
             </Grid>
-            
             { 
               data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SK.SkillCard {...skill} isVisible={isVisible}></SK.SkillCard></Grid>) 
             }

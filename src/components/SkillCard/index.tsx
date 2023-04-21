@@ -25,6 +25,7 @@ const StyledRating = styled(
   ({ width, color, ...other }: RatingProps & StyledRatingProps) => <Rating {...other} />)(({ width, color }: StyledRatingProps) => ({
     '& .MuiRating-decimal': {
       width: width,
+      transition: 'width 5s'
     },
     '& .MuiRating-iconFilled': {
       backgroundColor: color,
@@ -53,12 +54,12 @@ export function SkillCard({ title, topic, content, rating, color, isVisible }: s
         </Typography>
       </CardContent>
       <StyledRating
-        width='20%'
+        width={isVisible ? '20%' :'0%'}
         color={color}
         defaultValue={rating}
         readOnly
         precision={0.5}
-        sx={{ display: 'flex', transition: 'left 5s', left: isVisible ? '0px' : '-200px' }}
+        sx={{ display: 'flex',}}
         icon={<RatingElement />}
         emptyIcon={<RatingElement />}
       />
