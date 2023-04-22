@@ -25,7 +25,8 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = ( page: string ) => {
-    window.location.href = `#${page}`;
+    const element = document.getElementById(`${page}`);
+    element.scrollIntoView({behavior: "smooth"});
     setAnchorElNav(null);
   };
 

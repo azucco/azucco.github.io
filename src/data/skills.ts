@@ -1,6 +1,6 @@
-import * as SK from '../components/SkillCard';
+import * as SC from '../components/SkillCard';
 
-const skills :SK.skillCardContent[] = [
+const skills :SC.skillCardContent[] = [
     {
         title: 'JavaScript', 
         topic: 'Backend and frontend', 

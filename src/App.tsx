@@ -1,7 +1,7 @@
 import { Grid, Container, Typography } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
-import * as SK from './components/SkillCard';
+import * as SC from './components/SkillCard';
 import * as ET from './components/ExperienceTimeline';
 import * as data from './data';
 import { Theme, ThemeProvider, createTheme } from '@mui/material/styles';
@@ -40,13 +40,13 @@ function App() {
           <Grid container>
             <Grid item xs={12} md={6}><Title></Title></Grid>
             <Grid item xs={12} md={6}></Grid>
-            <Grid ref={containerRef} item xs={12} md={12}>
-              <Typography id={SK.id} variant="h3">
-                Skills and proficency   
+            <Grid item ref={containerRef} xs={12} md={12}>
+              <Typography id={SC.id} variant="h3">
+                Skills and proficency
               </Typography>
             </Grid>
             { 
-              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SK.SkillCard {...skill} isVisible={isVisible}></SK.SkillCard></Grid>) 
+              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SC.SkillCard {...skill} isVisible={isVisible}></SC.SkillCard></Grid>) 
             }
           </Grid>
           <Grid container>
