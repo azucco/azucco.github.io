@@ -10,7 +10,7 @@ import useElementOnScreen from './hook/useElementOnScreen';
 
 const theme :Theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     // primary: {
     //   main: red[500],
     // },
@@ -42,7 +42,7 @@ function App() {
             <Grid item xs={12} md={6}></Grid>
             <Grid ref={containerRef} item xs={12} md={12}>
               <Typography id={SK.id} variant="h3">
-                Skills and proficency { isVisible ? 'visibile' : 'not visible'}   
+                Skills and proficency   
               </Typography>
             </Grid>
             { 

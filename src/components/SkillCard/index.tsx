@@ -31,7 +31,7 @@ const StyledRating = styled(
       backgroundColor: color,
     },
     '& .MuiRating-iconEmpty': {
-      backgroundColor: 'rgba(0, 0, 0, 0.1)',
+      // backgroundColor: 'rgba(0, 0, 0, 0.1)',
     },
   }));
 
@@ -53,16 +53,20 @@ export function SkillCard({ title, topic, content, rating, color, isVisible }: s
           {content}
         </Typography>
       </CardContent>
-      <StyledRating
-        width={isVisible ? '20%' :'0%'}
-        color={color}
-        defaultValue={rating}
-        readOnly
-        precision={0.5}
-        sx={{ display: 'flex',}}
-        icon={<RatingElement />}
-        emptyIcon={<RatingElement />}
-      />
+      <Tooltip title={(100/5*rating) + '% of proficency'}>
+        <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', cursor: 'help' }}>
+          <StyledRating
+            width={isVisible ? '20%' :'0%'}
+            color={color}
+            defaultValue={rating}
+            readOnly
+            precision={0.5}
+            sx={{ display: 'flex'}}
+            icon={<RatingElement />}
+            emptyIcon={<RatingElement />}
+          />
+      </div>
+      </Tooltip>
     </Card>
   );
 }
