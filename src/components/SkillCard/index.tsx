@@ -5,8 +5,10 @@ import { RatingProps } from '@mui/material/Rating';
 import Rating from '@mui/material/Rating';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
+import { IconType } from 'react-icons/lib';
 
 export type skillCardContent = {
+  Icon: IconType
   title: string,
   topic: string,
   content: string;
@@ -37,10 +39,11 @@ const StyledRating = styled(
 
 const RatingElement = () => <div style={{ height: '10px' }}></div>
 
-export function SkillCard({ title, topic, content, rating, color, isVisible }: skillCardContent & {isVisible: boolean}) {
+export function SkillCard({ Icon, title, topic, content, rating, color, isVisible }: skillCardContent & {isVisible: boolean}) {
   return (
     <Card>
       <CardContent>
+        <Icon style={{ fontSize: '32px' }}></Icon>
         <Typography gutterBottom>
           {topic}
         </Typography>
@@ -56,7 +59,7 @@ export function SkillCard({ title, topic, content, rating, color, isVisible }: s
       <Tooltip title={(100/5*rating) + '% of proficency'}>
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', cursor: 'help' }}>
           <StyledRating
-            width={isVisible ? '20%' :'0%'}
+            width={isVisible ? (100/5) + '%' :'0%'}
             color={color}
             defaultValue={rating}
             readOnly

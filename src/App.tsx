@@ -46,7 +46,7 @@ function App() {
               </Typography>
             </Grid>
             { 
-              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={4}><SC.SkillCard {...skill} isVisible={isVisible}></SC.SkillCard></Grid>) 
+              data.skills.map((skill, index) => <Grid item key={index} xs={12} md={3}><SC.SkillCard {...skill} isVisible={isVisible}></SC.SkillCard></Grid>) 
             }
           </Grid>
           <Grid container>
