@@ -39,9 +39,14 @@ const StyledRating = styled(
 
 const RatingElement = () => <div style={{ height: '10px' }}></div>
 
-export function SkillCard({ Icon, title, topic, content, rating, color, isVisible }: skillCardContent & {isVisible: boolean}) {
+export function SkillCard({ Icon, title, topic, content, rating, color, isVisible }: skillCardContent & { isVisible: boolean }) {
   return (
-    <Card>
+    <Card sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: '100%'
+    }}>
       <CardContent>
         <Icon style={{ fontSize: '32px' }}></Icon>
         <Typography gutterBottom>
@@ -56,19 +61,19 @@ export function SkillCard({ Icon, title, topic, content, rating, color, isVisibl
           {content}
         </Typography>
       </CardContent>
-      <Tooltip title={(100/5*rating) + '% of proficency'}>
+      <Tooltip title={(100 / 5 * rating) + '% of proficency'}>
         <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)', cursor: 'help' }}>
           <StyledRating
-            width={isVisible ? (100/5) + '%' :'0%'}
+            width={isVisible ? (100 / 5) + '%' : '0%'}
             color={color}
             defaultValue={rating}
             readOnly
             precision={0.5}
-            sx={{ display: 'flex'}}
+            sx={{ display: 'flex' }}
             icon={<RatingElement />}
             emptyIcon={<RatingElement />}
           />
-      </div>
+        </div>
       </Tooltip>
     </Card>
   );
