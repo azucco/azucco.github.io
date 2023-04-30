@@ -45,7 +45,8 @@ export function SkillCard({ Icon, title, topic, content, rating, color, isVisibl
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      height: '100%'
+      height: '100%',
+      maxWidth: '95%'
     }}>
       <CardContent>
         <Icon style={{ fontSize: '32px' }}></Icon>
