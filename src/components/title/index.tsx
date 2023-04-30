@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { styled } from '@mui/material/styles';
 
 type TitleButton = {
     text: string;
@@ -19,7 +19,18 @@ const buttons: TitleButton[] = [
         action:  () => {},
         variant: 'outlined'
     },
-]
+];
+
+const Root = styled('div')(({ theme }) => ({
+    display: 'flex',
+    flexWrap: 'wrap',
+    [theme.breakpoints.down('sm')]: {
+        justifyContent: 'center',
+    },
+    [theme.breakpoints.up('sm')]: {
+        justifyContent: 'flex-start',
+    }
+  }));
 
 function Title() {
     return (
@@ -40,17 +51,20 @@ function Title() {
                 <br />Working as <b>fullstack developer</b> since 2018.
                 <br />My favourite language is <b>JS</b>.
             </Typography>
-            {
-                buttons.map((button, index) =>
-                    <Button
-                        sx={{marginRight: '10px', marginBottom: '20px'}}
-                        size="large"
-                        variant={button.variant}
-                    >
-                        {button.text}
-                    </Button>
-                )
-            }
+            <Root>
+                {
+                    buttons.map((button, index) =>
+                        <Button
+                            key={index}
+                            sx={{ margin: '0px 12px 12px 0px' }}
+                            size="large"
+                            variant={button.variant}
+                        >
+                            {button.text}
+                        </Button>
+                    )
+                }
+            </Root>
         </>
     )
 }
