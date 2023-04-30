@@ -35,17 +35,19 @@ const Root = styled('div')(({ theme }) => ({
 function Title() {
     return (
         <>
-            <Typography variant="h2" sx={{
-                padding: '5px 0px 5px 0px'
+            <Typography variant="h1" sx={{
+                padding: '5px 0px 5px 0px',
+                fontWeight: 'bold',
+                fontSize: '56px'
                 // backgroundImage: 'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)', 
                 // boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
             }}>
                 Alessandro Zucco
             </Typography>
-            <Typography variant="h3" sx={{ padding: '5px 0px 5px 0px' }}>
+            <Typography variant="h2" sx={{ padding: '5px 0px 5px 0px', fontSize: '48px', fontWeight: 'bold' }}>
                 Web Developer
             </Typography>
-            <Typography variant="h5" sx={{ padding: '30px 0px 30px 0px', lineHeight: '40px' }}>
+            <Typography variant="body1" sx={{ padding: '30px 0px 40px 0px', fontSize: '24px'}}>
                 <b>Turin</b> based. Born <b>January 28, 1988</b>.
                 <br />Web development enthusiast.
                 <br />Working as <b>fullstack developer</b> since 2018.

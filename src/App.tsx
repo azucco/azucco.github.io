@@ -10,7 +10,7 @@ import useElementOnScreen from './hook/useElementOnScreen';
 
 const theme: Theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     // primary: {
     //   main: red[500],
     // },
@@ -19,7 +19,7 @@ const theme: Theme = createTheme({
     borderRadius: 15,
   },
   typography: {
-    // fontFamily: 'Inter Var, system-ui, Avenir, Helvetica, Arial, sans-serif',
+    fontFamily: 'Inter Var, system-ui, Avenir, Helvetica, Arial, sans-serif',
   },
 });
 
@@ -43,7 +43,9 @@ function App() {
         <AppBar></AppBar>
         <Container fixed maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Grid container>
-            <Grid item xs={12} md={6} sx={sectionStyle}><Title></Title></Grid>
+            <Grid item xs={12} md={6} sx={sectionStyle}>
+              <Title/>
+            </Grid>
             <Grid item xs={12} md={6}></Grid>
             <Grid item ref={containerRef} xs={12} md={12} sx={TypographyContainerStyle}>
               <Typography id={SC.id} variant="h3">
