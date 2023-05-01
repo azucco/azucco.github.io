@@ -21,7 +21,7 @@ const buttons: TitleButton[] = [
     },
 ];
 
-const Root = styled('div')(({ theme }) => ({
+const ButtonsContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
     [theme.breakpoints.down('sm')]: {
@@ -35,28 +35,23 @@ const Root = styled('div')(({ theme }) => ({
 function Title() {
     return (
         <>
-            <Typography variant="h1" sx={{
-                padding: '5px 0px 5px 0px',
-                fontWeight: 'bold',
-                fontSize: '56px'
-                // backgroundImage: 'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)', 
-                // boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
-            }}>
+            <Typography variant="h1">
                 Alessandro Zucco
             </Typography>
-            <Typography variant="h2" sx={{ padding: '5px 0px 5px 0px', fontSize: '48px', fontWeight: 'bold' }}>
-                Web Developer
+            <Typography variant="h2">
+                Web developer
             </Typography>
-            <Typography variant="body1" sx={{ padding: '30px 0px 40px 0px', fontSize: '24px'}}>
+            <Typography variant="body1" color='secondary' sx={{ padding: '25px 0px 30px 0px'}}>
                 <b>Turin</b> based. Born <b>January 28, 1988</b>.
                 <br />Web development enthusiast.
                 <br />Working as <b>fullstack developer</b> since 2018.
                 <br />My favourite language is <b>JS</b>.
             </Typography>
-            <Root>
+            <ButtonsContainer>
                 {
                     buttons.map((button, index) =>
                         <Button
+                            color='primary'
                             key={index}
                             sx={{ margin: '0px 12px 12px 0px' }}
                             size="large"
@@ -66,7 +61,7 @@ function Title() {
                         </Button>
                     )
                 }
-            </Root>
+            </ButtonsContainer>
         </>
     )
 }

@@ -58,7 +58,7 @@ export function SkillCard({ Icon, title, topic, content, rating, color, isVisibl
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" color="secondary">
           {content}
         </Typography>
       </CardContent>

@@ -13,12 +13,19 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { MdOutlineBrightness1, MdOutlineBrightness2 } from "react-icons/md";
+import { BsLinkedin } from "react-icons/bs";
+import { useTheme } from '@mui/material/styles';
 
 const pages = ['skills', 'experience'];
 
-function ResponsiveAppBar() {
+type AppBarProps = {
+  toggleColorMode: Function,
+}
+
+function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -121,10 +128,15 @@ function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="My LinkedIn profile">
-              <LinkedInIcon sx={{ p: 0, cursor: 'pointer' }} onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
-              </LinkedInIcon>
+            <Tooltip title={`Toggle ${theme.palette.mode === 'dark' ? 'light' : 'dark'} mode`}>
+              <IconButton onClick={toggleColorMode} color="inherit">
+                {theme.palette.mode === 'dark' ? <MdOutlineBrightness1 /> : <MdOutlineBrightness2 />}
+              </IconButton>
             </Tooltip>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <BsLinkedin style={{ cursor: 'pointer' }} onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
+            </BsLinkedin>
           </Box>
         </Toolbar>
       </Container>

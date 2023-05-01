@@ -48,7 +48,7 @@ const skills :SC.skillCardContent[] = [
         title: 'SQL and ORM', 
         topic: 'Backend', 
         content: 'I work mainly with MySQL with and without ORM (TypeORM).',
-        rating: 3,
+        rating: 4,
         color: '#00758F',
     },
     {

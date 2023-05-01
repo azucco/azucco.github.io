@@ -1,4 +1,5 @@
-import { Grid, Container, Typography } from '@mui/material';
+import { useMemo, useState } from 'react';
+import { Grid, Container, Typography, PaletteMode, IconButton } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
 import * as SC from './components/SkillCard';
@@ -8,28 +9,93 @@ import { SxProps, Theme, ThemeProvider, createTheme } from '@mui/material/styles
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
 
-const theme: Theme = createTheme({
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
-    mode: 'dark',
-    // primary: {
-    //   main: red[500],
-    // },
+    mode,
+    ...(mode === 'light'
+      ? {
+          // palette values for light mode
+          primary: {
+            main: 'rgb(233,64,87)'
+          },
+          secondary: {
+            main: '#6D6D72'
+          },
+          text: {
+            primary: '#3C3C43'
+          },
+          background: {
+            paper: '#F6F6F7',
+          }
+        }
+      : {
+          // palette values for dark mode
+          primary: {
+            main: 'rgb(233,64,87)'
+          },
+          secondary: {
+            main: '#9999A0'
+          },
+          text: {
+            primary: '#DFDFD7'
+          },
+          background: {
+            default: '#1E1E20',
+            paper: '#252529',
+          }
+        }),
   },
+  shadows: ['none'],
   shape: {
     borderRadius: 15,
   },
   typography: {
     fontFamily: 'Inter Var, system-ui, Avenir, Helvetica, Arial, sans-serif',
+    h1: {
+      fontSize: '56px',
+      fontWeight: 'bold',
+      ...gradientStyle
+      
+    },
+    h2: {
+      fontSize: '48px',
+      fontWeight: 'bold',
+    },
+    body1: {
+      // fontSize: '24px',
+    },
   },
 });
 
+const gradientStyle = {
+  backgroundImage: 'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+  backgroundClip: 'text',
+  color: 'transparent'
+}
+
 function App() {
+
+  const [mode, setMode] = useState<PaletteMode>('light');
+  const colorMode = useMemo(
+    () => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode((prevMode: PaletteMode) =>
+          prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
+  );
 
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
     threshold: 1.0
   })
+
+  // Update the theme only if the mode changes
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   const skillCardMd: number = data.skills.length > 6 ? 3 : 4;
 
@@ -40,7 +106,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
-        <AppBar></AppBar>
+        <AppBar toggleColorMode={colorMode.toggleColorMode}></AppBar>
         <Container fixed maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Grid container>
             <Grid item xs={12} md={6} sx={sectionStyle}>
