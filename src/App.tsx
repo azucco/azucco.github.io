@@ -131,7 +131,7 @@ function App() {
                 Experience and education
               </Typography>
             </Grid>
-            <Grid item key='experience' xs={12} md={12} sx={sectionStyle}>
+            <Grid item xs={12} md={12} sx={sectionStyle}>
               <ET.ExperienceTimeline></ET.ExperienceTimeline>
             </Grid>
           </Grid>
