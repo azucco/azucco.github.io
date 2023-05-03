@@ -8,44 +8,14 @@ import * as data from './data';
 import { Shadows, SxProps, ThemeOptions, ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
+import { palette } from './styles/palette';
 
 const shadows: Shadows = [...Array(25).keys()].map(el => 'none');
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
-    ...(mode === 'light'
-      ? {
-        // palette values for light mode
-        primary: {
-          main: 'rgb(233,64,87)'
-        },
-        secondary: {
-          main: '#6D6D72'
-        },
-        text: {
-          primary: '#3C3C43'
-        },
-        background: {
-          paper: '#F6F6F7',
-        }
-      }
-      : {
-        // palette values for dark mode
-        primary: {
-          main: 'rgb(233,64,87)'
-        },
-        secondary: {
-          main: '#9999A0'
-        },
-        text: {
-          primary: '#DFDFD7'
-        },
-        background: {
-          default: '#1E1E20',
-          paper: '#252529',
-        }
-      }),
+    ...(palette[`${mode}`]),
   },
   shadows: shadows,
   shape: {
