@@ -5,47 +5,49 @@ import AppBar from './components/AppBar';
 import * as SC from './components/SkillCard';
 import * as ET from './components/ExperienceTimeline';
 import * as data from './data';
-import { SxProps, Theme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { Shadows, SxProps, ThemeOptions, ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const shadows: Shadows = [...Array(25).keys()].map(el => 'none');
+
+const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
     ...(mode === 'light'
       ? {
-          // palette values for light mode
-          primary: {
-            main: 'rgb(233,64,87)'
-          },
-          secondary: {
-            main: '#6D6D72'
-          },
-          text: {
-            primary: '#3C3C43'
-          },
-          background: {
-            paper: '#F6F6F7',
-          }
+        // palette values for light mode
+        primary: {
+          main: 'rgb(233,64,87)'
+        },
+        secondary: {
+          main: '#6D6D72'
+        },
+        text: {
+          primary: '#3C3C43'
+        },
+        background: {
+          paper: '#F6F6F7',
         }
+      }
       : {
-          // palette values for dark mode
-          primary: {
-            main: 'rgb(233,64,87)'
-          },
-          secondary: {
-            main: '#9999A0'
-          },
-          text: {
-            primary: '#DFDFD7'
-          },
-          background: {
-            default: '#1E1E20',
-            paper: '#252529',
-          }
-        }),
+        // palette values for dark mode
+        primary: {
+          main: 'rgb(233,64,87)'
+        },
+        secondary: {
+          main: '#9999A0'
+        },
+        text: {
+          primary: '#DFDFD7'
+        },
+        background: {
+          default: '#1E1E20',
+          paper: '#252529',
+        }
+      }),
   },
-  shadows: ['none'],
+  shadows: shadows,
   shape: {
     borderRadius: 15,
   },
@@ -55,7 +57,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
       fontSize: '56px',
       fontWeight: 'bold',
       ...gradientStyle
-      
+
     },
     h2: {
       fontSize: '48px',
@@ -110,7 +112,7 @@ function App() {
         <Container fixed maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Grid container>
             <Grid item xs={12} md={6} sx={sectionStyle}>
-              <Title/>
+              <Title />
             </Grid>
             <Grid item xs={12} md={6}></Grid>
             <Grid item ref={containerRef} xs={12} md={12} sx={TypographyContainerStyle}>
@@ -121,7 +123,7 @@ function App() {
             <Grid container sx={sectionStyle}>
               {
                 data.skills.map((skill, index) =>
-                  <Grid item key={index} xs={12} md={skillCardMd} sx={{ marginBottom: '20px'}}>
+                  <Grid item key={index} xs={12} md={skillCardMd} sx={{ marginBottom: '20px' }}>
                     <SC.SkillCard {...skill} isVisible={isVisible}></SC.SkillCard>
                   </Grid>)
               }
