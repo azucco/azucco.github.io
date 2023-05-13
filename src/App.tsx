@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Grid, Container, Typography, PaletteMode, IconButton } from '@mui/material';
+import { Grid, Container, Typography, PaletteMode } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
 import * as SC from './components/SkillCard';

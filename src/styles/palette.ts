@@ -1,4 +1,11 @@
-export const palette = { // fix Type (PaletteOptions - mode)
+import { PaletteOptions } from "@mui/material";
+
+type customPalette = {
+    light: Omit<PaletteOptions, "mode">,
+    dark: Omit<PaletteOptions, "mode">
+}
+
+export const palette: customPalette = {
     light: {
         // palette values for light mode
         primary: {
@@ -26,7 +33,7 @@ export const palette = { // fix Type (PaletteOptions - mode)
             primary: '#DFDFD7'
         },
         background: {
-            default: '#1E1E20',
+            default: 'rgb(30, 30, 32)',
             paper: '#252529',
         }
     }

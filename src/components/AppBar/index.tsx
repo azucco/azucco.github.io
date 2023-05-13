@@ -38,7 +38,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" sx={{ backgroundColor: theme.palette.background.default}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -53,7 +53,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              // color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -67,7 +67,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              // color="inherit"
             >
               <MenuIcon />
             </IconButton>
@@ -109,7 +109,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              // color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -120,7 +120,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               <Button
                 key={page}
                 onClick={() => handleCloseNavMenu(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
               >
                 {_.capitalize(page)}
               </Button>
@@ -129,7 +129,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={`Toggle ${theme.palette.mode === 'dark' ? 'light' : 'dark'} mode`}>
-              <IconButton onClick={toggleColorMode} color="inherit">
+              <IconButton onClick={toggleColorMode}>
                 {theme.palette.mode === 'dark' ? <MdOutlineBrightness1 /> : <MdOutlineBrightness2 />}
               </IconButton>
             </Tooltip>
