@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Grid, Container, Typography, PaletteMode } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
+import Footer from './components/Footer';
 import * as SC from './components/SkillCard';
 import * as ET from './components/ExperienceTimeline';
 import * as data from './data';
@@ -108,6 +109,7 @@ function App() {
             </Grid>
           </Grid>
         </Container>
+        <Footer />
       </div>
     </ThemeProvider>
   )

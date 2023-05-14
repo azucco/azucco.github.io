@@ -25,6 +25,7 @@ type AppBarProps = {
 function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
+  const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
   const theme = useTheme();
 
   useEffect(() => {
@@ -38,6 +39,10 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    setIsTransitionEnabled(!isTransitionEnabled);
+  }, [theme.palette.mode])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -53,7 +58,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
     <AppBar position="fixed" sx={{
       borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`,
       backgroundColor: scrollTop === 0 ? 'transparent' : theme.palette.background.default,
-      transition: 'background-color 0.5s',
+      transition: isTransitionEnabled ? 'background-color 0.5s' : '',
       backgroundImage: 'none'
     }}>
       <Container maxWidth="xl">
@@ -146,7 +151,10 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={`Toggle ${theme.palette.mode === 'dark' ? 'light' : 'dark'} mode`}>
-              <IconButton onClick={toggleColorMode}>
+              <IconButton onClick={() => {
+                setIsTransitionEnabled(false);
+                toggleColorMode();
+              }}>
                 {theme.palette.mode === 'dark' ? <MdOutlineBrightness1 /> : <MdOutlineBrightness2 />}
               </IconButton>
             </Tooltip>
