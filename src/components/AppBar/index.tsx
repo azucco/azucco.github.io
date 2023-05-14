@@ -41,7 +41,9 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
   }, []);
 
   useEffect(() => {
-    setIsTransitionEnabled(!isTransitionEnabled);
+    if (!isTransitionEnabled) {
+      setIsTransitionEnabled(!isTransitionEnabled);
+    }
   }, [theme.palette.mode])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
