@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import * as _ from 'lodash';
 
 import AppBar from '@mui/material/AppBar';
@@ -12,7 +12,6 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { MdOutlineBrightness1, MdOutlineBrightness2 } from "react-icons/md";
 import { BsLinkedin } from "react-icons/bs";
 import { useTheme } from '@mui/material/styles';
@@ -24,25 +23,43 @@ type AppBarProps = {
 }
 
 function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [scrollTop, setScrollTop] = useState(0);
   const theme = useTheme();
+
+  useEffect(() => {
+    const handleScroll = event => {
+      setScrollTop(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = ( page: string ) => {
+  const handleCloseNavMenu = (page: string) => {
     const element = document.getElementById(`${page}`);
-    element.scrollIntoView({behavior: "smooth"});
+    element.scrollIntoView({ behavior: "smooth" });
     setAnchorElNav(null);
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: theme.palette.background.default}}>
+    <AppBar position="fixed" sx={{ 
+      backgroundColor: scrollTop === 0 ? 'transparent' : theme.palette.background.default, 
+      transition: 'background-color 0.5s, border-bottom 0.5s',
+      backgroundImage: 'none',
+      borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`
+      }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -58,8 +75,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
             }}
           >
             LOGO
-          </Typography>
-
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -67,7 +83,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              // color="inherit"
+            // color="inherit"
             >
               <MenuIcon />
             </IconButton>
@@ -96,8 +112,8 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -114,12 +130,13 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={() => handleCloseNavMenu(page)}
+                color='secondary'
                 sx={{ my: 2, display: 'block' }}
               >
                 {_.capitalize(page)}
@@ -135,8 +152,9 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
             </Tooltip>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <BsLinkedin style={{ cursor: 'pointer' }} onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
-            </BsLinkedin>
+            <IconButton onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
+              <BsLinkedin />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

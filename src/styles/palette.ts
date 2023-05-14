@@ -19,7 +19,8 @@ export const palette: customPalette = {
         },
         background: {
             paper: '#F6F6F7',
-        }
+        },
+        divider: '#DFDFD7'
     },
     dark: {
         // palette values for dark mode
@@ -35,6 +36,7 @@ export const palette: customPalette = {
         background: {
             default: 'rgb(30, 30, 32)',
             paper: '#252529',
-        }
+        },
+        divider: 'black'
     }
 }
