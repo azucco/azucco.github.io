@@ -50,12 +50,12 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
   };
 
   return (
-    <AppBar position="fixed" sx={{ 
-      backgroundColor: scrollTop === 0 ? 'transparent' : theme.palette.background.default, 
-      transition: 'background-color 0.5s, border-bottom 0.5s',
-      backgroundImage: 'none',
-      borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`
-      }}>
+    <AppBar position="fixed" sx={{
+      borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`,
+      backgroundColor: scrollTop === 0 ? 'transparent' : theme.palette.background.default,
+      transition: 'background-color 0.5s',
+      backgroundImage: 'none'
+    }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
