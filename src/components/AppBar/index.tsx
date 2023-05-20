@@ -188,14 +188,14 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={`Toggle ${theme.palette.mode === 'dark' ? 'light' : 'dark'} mode`}>
-              <Android12Switch mode={theme.palette.mode} defaultChecked onClick={() => {
+              <Android12Switch mode={theme.palette.mode} disableRipple onClick={() => {
                 setIsTransitionEnabled(false);
                 toggleColorMode();
               }} />
             </Tooltip>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ fontSize: 22 }} disableRipple onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
+            <IconButton sx={{ fontSize: 21 }} disableRipple onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
               <BsLinkedin />
             </IconButton>
           </Box>
