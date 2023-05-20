@@ -29,13 +29,11 @@ const Android12Switch: SwitchProps & StyledCommonProps<Theme> & { mode: string, 
   padding: 8,
   '& .Mui-checked': {
     color: theme.palette.background.paper,
-    '+ .MuiSwitch-track': {
-      backgroundColor: theme.palette.background.paper,
-      border: `2px solid ${theme.palette.text.secondary}`,
-    }
   },
   '& .MuiSwitch-track': {
     borderRadius: 22 / 2,
+    backgroundColor: theme.palette.background.paper + '!important',
+    border: `1px solid ${theme.palette.secondary.main}`,
     '&:before, &:after': {
       content: '""',
       position: 'absolute',
@@ -197,7 +195,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
             </Tooltip>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
+            <IconButton sx={{ fontSize: 22 }} disableRipple onClick={() => window.open('https://www.linkedin.com/in/alessandro-zucco-81b7b2137/', "_blank")}>
               <BsLinkedin />
             </IconButton>
           </Box>

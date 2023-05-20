@@ -16,7 +16,6 @@ export const palette: customPalette = {
         },
         text: {
             primary: '#3C3C43',
-            secondary: '#DFDFE0'
         },
         background: {
             paper: '#F6F6F7',
