@@ -7,9 +7,12 @@ import * as SC from './components/SkillCard';
 import * as ET from './components/ExperienceTimeline';
 import * as data from './data';
 import { Shadows, SxProps, ThemeOptions, ThemeProvider, createTheme } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
 import { palette } from './styles/palette';
+
+export type Sections = { label: string, id: string, visible: boolean }[];
 
 const shadows: Shadows = [...Array(25).keys()].map(el => 'none');
 
@@ -61,11 +64,30 @@ function App() {
     [],
   );
 
-  const [containerRef, isVisible] = useElementOnScreen({
+  const [SCcontainerRef, isSCVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
     threshold: 1.0
   })
+
+  const [ETcontainerRef, isETVisible] = useElementOnScreen({
+    root: null,
+    rootMargin: "0px",
+    threshold: 1.0
+  })
+
+  const sections: Sections = [
+    {
+      label: 'skill',
+      id: SC.id,
+      visible: isSCVisible
+    },
+    {
+      label: 'experience',
+      id: ET.id,
+      visible: isETVisible
+    },
+  ]
 
   // Update the theme only if the mode changes
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
@@ -79,32 +101,24 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="App">
-        <AppBar toggleColorMode={colorMode.toggleColorMode}></AppBar>
+        <AppBar sections={sections} toggleColorMode={colorMode.toggleColorMode}></AppBar>
         <Container fixed maxWidth="lg" sx={{ marginTop: '100px' }}>
           <Grid container>
             <Grid item xs={12} md={6} sx={sectionStyle}>
               <Title />
             </Grid>
             <Grid item xs={12} md={6}></Grid>
-            <Grid item ref={containerRef} xs={12} md={12} sx={TypographyContainerStyle}>
-              <Typography id={SC.id} variant="h3">
-                Skills and proficency
-              </Typography>
-            </Grid>
-            <Grid container sx={sectionStyle}>
+            <Divider ref={SCcontainerRef} />
+            <Grid container id={SC.id} sx={sectionStyle}>
               {
                 data.skills.map((skill, index) =>
                   <Grid item key={index} xs={12} md={skillCardMd} sx={{ marginBottom: '20px' }}>
-                    <SC.SkillCard {...skill} isVisible={isVisible}></SC.SkillCard>
+                    <SC.SkillCard {...skill} isVisible={isSCVisible}></SC.SkillCard>
                   </Grid>)
               }
             </Grid>
-            <Grid item key={ET.id} xs={12} md={12} sx={TypographyContainerStyle}>
-              <Typography id={ET.id} variant="h3">
-                Experience and education
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={12} sx={sectionStyle}>
+            <Divider ref={ETcontainerRef} />
+            <Grid item id={ET.id} xs={12} md={12} sx={sectionStyle}>
               <ET.ExperienceTimeline></ET.ExperienceTimeline>
             </Grid>
           </Grid>

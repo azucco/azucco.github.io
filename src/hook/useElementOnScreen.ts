@@ -18,7 +18,8 @@ const useElementOnScreen = (options: IntersectionObserverInit) => {
         }
     }, [containerRef, options])
 
-    return [containerRef, isVisible];
+    const returnTuple: [React.MutableRefObject<null>, boolean] = [containerRef, isVisible];
+    return returnTuple;
 }
 
 export default useElementOnScreen;

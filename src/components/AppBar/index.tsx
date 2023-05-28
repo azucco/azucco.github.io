@@ -16,10 +16,10 @@ import { BsLinkedin } from "react-icons/bs";
 import { Theme, useTheme } from '@mui/material/styles';
 import { styled, StyledCommonProps } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
-
-const pages = ['skills', 'experience'];
+import { Sections } from '../../App';
 
 type AppBarProps = {
+  sections: Sections,
   toggleColorMode: Function,
 }
 
@@ -64,7 +64,7 @@ const Android12Switch: SwitchProps & StyledCommonProps<Theme> & { mode: string, 
   },
 }));
 
-function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
+function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
   const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
@@ -92,8 +92,8 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (page: string) => {
-    const element = document.getElementById(`${page}`);
+  const handleCloseNavMenu = (id: string) => {
+    const element = document.getElementById(id);
     element.scrollIntoView({ behavior: "smooth" });
     setAnchorElNav(null);
   };
@@ -125,7 +125,7 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
           >
             LOGO
           </Typography> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -154,13 +154,13 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
-                  <Typography textAlign="center">{_.capitalize(page)}</Typography>
+              {sections.map((section) => (
+                <MenuItem key={section.label} onClick={() => handleCloseNavMenu(section.id)}>
+                  <Typography textAlign="center">{_.capitalize(section.label)}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           {/* <Typography
             variant="h5"
@@ -180,15 +180,15 @@ function ResponsiveAppBar({ toggleColorMode }: AppBarProps) {
           >
             LOGO
           </Typography> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          <Box sx={{ flexGrow: 1, display: 'flex' }}>
+            {sections.map((section) => (
               <Button
-                key={page}
-                onClick={() => handleCloseNavMenu(page)}
+                key={section.label}
+                onClick={() => handleCloseNavMenu(section.id)}
                 color='secondary'
                 sx={{ my: 2, display: 'block' }}
               >
-                {_.capitalize(page)}
+                {_.capitalize(section.label)}
               </Button>
             ))}
           </Box>
