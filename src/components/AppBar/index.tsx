@@ -30,11 +30,16 @@ const Android12Switch: SwitchProps & StyledCommonProps<Theme> & { mode: string, 
   '& .Mui-checked': {
     color: theme.palette.background.paper,
   },
+  '& .MuiSwitch-switchBase:hover': {
+    backgroundColor: 'transparent',
+  },
+  '& .MuiSwitch-switchBase.Mui-checked:hover': {
+    backgroundColor: 'transparent',
+  },
   '& .MuiSwitch-track': {
     borderRadius: 22 / 2,
-    backgroundColor: theme.palette.background.paper + '!important',
-    // backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-    // opacity: 1,
+    backgroundColor: 'transparent!important',
+    backgroundImage: mode === 'dark' ? 'linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2))' : 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))',
     border: `1px solid ${theme.palette.secondary.main}`,
     '&:before, &:after': {
       content: '""',
