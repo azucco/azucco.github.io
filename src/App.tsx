@@ -11,8 +11,9 @@ import Divider from '@mui/material/Divider';
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
 import { palette } from './styles/palette';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-export type Sections = { label: string, id: string, visible: boolean }[];
+export type Sections = { label: string, id: string, isVisible: boolean }[];
 
 const shadows: Shadows = [...Array(25).keys()].map(el => 'none');
 
@@ -64,38 +65,46 @@ function App() {
     [],
   );
 
+  // Update the theme only if the mode changes
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   const [SCcontainerRef, isSCVisible] = useElementOnScreen({
+    onlyOn: true,
     root: null,
     rootMargin: "0px",
     threshold: 1.0
   })
 
-  const [ETcontainerRef, isETVisible] = useElementOnScreen({
+  const [SCEndRef, isSCEnded] = useElementOnScreen({
+    onlyOn: false,
     root: null,
     rootMargin: "0px",
-    threshold: 1.0
+    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.3
+  })
+  
+  const [ETEndRef, isETEnded] = useElementOnScreen({
+    onlyOn: false,
+    root: null,
+    rootMargin: "0px",
+    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.4
   })
 
   const sections: Sections = [
     {
       label: 'skill',
       id: SC.id,
-      visible: isSCVisible
+      isVisible: isSCEnded
     },
     {
       label: 'experience',
       id: ET.id,
-      visible: isETVisible
+      isVisible: isETEnded
     },
   ]
-
-  // Update the theme only if the mode changes
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   const skillCardMd: number = data.skills.length > 6 ? 3 : 4;
 
   const sectionStyle: SxProps = { padding: '30px 0px 30px 0px' };
-  const TypographyContainerStyle: SxProps = { padding: '30px 0px 20px 0px' };
 
   return (
     <ThemeProvider theme={theme}>
@@ -109,7 +118,7 @@ function App() {
             </Grid>
             <Grid item xs={12} md={6}></Grid>
             <Divider ref={SCcontainerRef} />
-            <Grid container id={SC.id} sx={sectionStyle}>
+            <Grid container ref={SCEndRef} id={SC.id} sx={sectionStyle}>
               {
                 data.skills.map((skill, index) =>
                   <Grid item key={index} xs={12} md={skillCardMd} sx={{ marginBottom: '20px' }}>
@@ -117,8 +126,7 @@ function App() {
                   </Grid>)
               }
             </Grid>
-            <Divider ref={ETcontainerRef} />
-            <Grid item id={ET.id} xs={12} md={12} sx={sectionStyle}>
+            <Grid item ref={ETEndRef} id={ET.id} xs={12} md={12} sx={sectionStyle}>
               <ET.ExperienceTimeline></ET.ExperienceTimeline>
             </Grid>
           </Grid>

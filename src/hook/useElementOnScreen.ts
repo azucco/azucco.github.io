@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useElementOnScreen = (options: IntersectionObserverInit) => {
+interface UseElementOnScreen extends IntersectionObserverInit {
+    onlyOn: boolean
+}
+
+const useElementOnScreen = ({onlyOn, ...options}: UseElementOnScreen) => {
     const containerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
     const callbackFunction = (entries: IntersectionObserverEntry[]) => {
         const [entry] = entries;
-        if (entry.isIntersecting === true) {
+        if (!onlyOn) {
+            setIsVisible(entry.isIntersecting);
+        } else if (entry.isIntersecting === true) {
             setIsVisible(entry.isIntersecting);
         }
     }
