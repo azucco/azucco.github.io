@@ -91,7 +91,7 @@ function App() {
 
   const sections: Sections = [
     {
-      label: 'skill',
+      label: 'skills',
       id: SC.id,
       isVisible: isSCEnded
     },
