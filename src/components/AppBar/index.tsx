@@ -93,8 +93,10 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
   };
 
   const handleCloseNavMenu = (id: string) => {
+    const yOffset = -80;
     const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: "smooth" });
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({top: y, behavior: 'smooth'});
     setAnchorElNav(null);
   };
 
