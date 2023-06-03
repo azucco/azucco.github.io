@@ -79,14 +79,14 @@ function App() {
     onlyOn: false,
     root: null,
     rootMargin: "0px",
-    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.3
+    threshold: useMediaQuery(theme.breakpoints.up('lg')) ? 1 : useMediaQuery(theme.breakpoints.up('md')) ? 0.8 : useMediaQuery(theme.breakpoints.up('sm')) ? 0.3 : 0.1
   })
   
   const [ETEndRef, isETEnded] = useElementOnScreen({
     onlyOn: false,
     root: null,
     rootMargin: "0px",
-    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.4
+    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.3
   })
 
   const sections: Sections = [
