@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Grid, Container, Typography, PaletteMode } from '@mui/material';
+import { Grid, Container, PaletteMode } from '@mui/material';
 import Title from './components/Title';
 import AppBar from './components/AppBar';
 import Footer from './components/Footer';
@@ -11,9 +11,8 @@ import Divider from '@mui/material/Divider';
 import CssBaseline from '@mui/material/CssBaseline';
 import useElementOnScreen from './hook/useElementOnScreen';
 import { palette } from './styles/palette';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
-export type Sections = { label: string, id: string, isVisible: boolean }[];
+export type Sections = { label: string, id: string, isVisible?: boolean }[];
 
 const shadows: Shadows = [...Array(25).keys()].map(el => 'none');
 
@@ -75,30 +74,14 @@ function App() {
     threshold: 1.0
   })
 
-  const [SCEndRef, isSCEnded] = useElementOnScreen({
-    onlyOn: false,
-    root: null,
-    rootMargin: "0px",
-    threshold: useMediaQuery(theme.breakpoints.up('lg')) ? 1 : useMediaQuery(theme.breakpoints.up('md')) ? 0.8 : useMediaQuery(theme.breakpoints.up('sm')) ? 0.3 : 0.1
-  })
-  
-  const [ETEndRef, isETEnded] = useElementOnScreen({
-    onlyOn: false,
-    root: null,
-    rootMargin: "0px",
-    threshold: useMediaQuery(theme.breakpoints.up('sm')) ? 0.8 : 0.3
-  })
-
   const sections: Sections = [
     {
       label: 'skills',
-      id: SC.id,
-      isVisible: isSCEnded
+      id: SC.id
     },
     {
       label: 'experience',
-      id: ET.id,
-      isVisible: isETEnded
+      id: ET.id
     },
   ]
 
@@ -118,7 +101,7 @@ function App() {
             </Grid>
             <Grid item xs={12} md={6}></Grid>
             <Divider ref={SCcontainerRef} />
-            <Grid container ref={SCEndRef} id={SC.id} sx={sectionStyle}>
+            <Grid container id={SC.id} sx={sectionStyle}>
               {
                 data.skills.map((skill, index) =>
                   <Grid item key={index} xs={12} md={skillCardMd} sx={{ marginBottom: '20px' }}>
@@ -126,7 +109,7 @@ function App() {
                   </Grid>)
               }
             </Grid>
-            <Grid item ref={ETEndRef} id={ET.id} xs={12} md={12} sx={sectionStyle}>
+            <Grid item id={ET.id} xs={12} md={12} sx={sectionStyle}>
               <ET.ExperienceTimeline></ET.ExperienceTimeline>
             </Grid>
           </Grid>

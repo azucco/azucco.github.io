@@ -71,12 +71,10 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
   const theme = useTheme();
 
   useEffect(() => {
-    const handleScroll = event => {
+    const handleScroll = () => {
       setScrollTop(window.scrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -92,11 +90,31 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (id: string) => {
+  const getElementY = (id: string): number => {
     const yOffset = -80;
     const element = document.getElementById(id);
-    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({top: y, behavior: 'smooth'});
+    if (element) {
+      return element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    }
+    return 0;
+  }
+
+  const getSections = (): Sections => {
+    return sections.map(section => {
+      const isSectionVisible = getElementY(section.id) < scrollTop;
+      if (isSectionVisible) {
+        section.isVisible = isSectionVisible;
+        sections
+          .filter(s => s.id !== section.id)
+          .map(s => s.isVisible = false);
+      }
+      return section;
+    })
+  }
+
+  const handleCloseNavMenu = (id: string) => {
+    const y = getElementY(id);
+    window.scrollTo({ top: y, behavior: 'smooth' });
     setAnchorElNav(null);
   };
 
@@ -110,11 +128,11 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
-            {sections.map((section) => (
+            {getSections().map((section) => (
               <Button
                 key={section.label}
                 onClick={() => handleCloseNavMenu(section.id)}
-                color={ section.isVisible ? 'primary' : 'secondary'}
+                color={section.isVisible ? 'primary' : 'secondary'}
                 sx={{ my: 2, display: 'block' }}
               >
                 {_.capitalize(section.label)}
