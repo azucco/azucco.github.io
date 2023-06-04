@@ -91,7 +91,7 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
   };
 
   const getElementY = (id: string): number => {
-    const yOffset = -80;
+    const yOffset = -110;
     const element = document.getElementById(id);
     if (element) {
       return element.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -101,9 +101,9 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
 
   const getSections = (): Sections => {
     return sections.map(section => {
-      const isSectionVisible = getElementY(section.id) < scrollTop;
+      const isSectionVisible = getElementY(section.id) - 5 < scrollTop;
+      section.isVisible = isSectionVisible;
       if (isSectionVisible) {
-        section.isVisible = isSectionVisible;
         sections
           .filter(s => s.id !== section.id)
           .map(s => s.isVisible = false);
