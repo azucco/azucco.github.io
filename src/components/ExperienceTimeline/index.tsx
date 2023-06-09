@@ -12,7 +12,7 @@ import { useTheme } from '@mui/material/styles';
 
 import * as data from '../../data';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { SvgIconTypeMap, useMediaQuery } from '@mui/material';
+import { Chip, SvgIconTypeMap, useMediaQuery } from '@mui/material';
 
 export type ExperienceTimelineItem = {
     years: string;
@@ -20,6 +20,7 @@ export type ExperienceTimelineItem = {
         muiName: string;
     };
     company: string;
+    city: string;
     job: string;
     description: string;
     type: 'focusOn' | 'beyond';
@@ -27,7 +28,7 @@ export type ExperienceTimelineItem = {
 
 export const id: string = 'experience';
 
-function ExperienceTimelineItem({ years, Icon, company, job, description, type, isTop }: ExperienceTimelineItem & { isTop: boolean }): JSX.Element {
+function ExperienceTimelineItem({ years, Icon, company, city, job, description, type, isTop }: ExperienceTimelineItem & { isTop: boolean }): JSX.Element {
 
     const theme = useTheme();
 
@@ -50,7 +51,7 @@ function ExperienceTimelineItem({ years, Icon, company, job, description, type, 
             </TimelineSeparator>
             <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography sx={{ fontSize: useMediaQuery(theme.breakpoints.down('sm')) ? '1.1rem' : '1.25rem' }}>
-                    {company}
+                    {company} {city !== '' && <Chip label={city} size="small"  />}
                 </Typography>
                 <Typography>
                     {job}

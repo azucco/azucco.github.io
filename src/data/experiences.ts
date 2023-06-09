@@ -8,7 +8,8 @@ const experiences :ET.ExperienceTimelineItem[] = [
     {
         years: '2020 - today',
         Icon: CodeIcon,
-        company: 'Coolshop srl - Turin',
+        company: 'Coolshop srl',
+        city: 'Turin',
         job: 'Fullstack developer',
         description: 'JS, TypeScript, React, PHP, NodeJs, SQL, ORM, Docker, Sass',
         type: 'focusOn'
@@ -17,6 +18,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         years: '2015 - today',
         Icon: VolunteerActivismIcon,
         company: 'Gruppo Archeologico Torinese',
+        city: '',
         job: 'Volunteering',
         description: '',
         type: 'beyond'
@@ -24,7 +26,8 @@ const experiences :ET.ExperienceTimelineItem[] = [
     {
         years: '2018 - 2020',
         Icon: CodeIcon,
-        company: 'Netsurfing srl - Ivrea',
+        company: 'Netsurfing srl',
+        city: 'Ivrea',
         job: 'Fullstack developer',
         description: 'JS, PHP, SQL',
         type: 'focusOn'
@@ -32,7 +35,8 @@ const experiences :ET.ExperienceTimelineItem[] = [
     {
         years: '2017 - 2018',
         Icon: SchoolIcon,
-        company: 'C.IA.C. Formazione - Ivrea',
+        company: 'C.IA.C. Formazione',
+        city: 'Ivrea',
         job: 'Tecnico Sviluppo software - JAVA, Oracle, HTML 5',
         description: 'JS, Java, SQL',
         type: 'focusOn'
@@ -41,6 +45,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         years: '2015 - 2017',
         Icon: WorkIcon,
         company: 'Alleanza Assicurazioni SpA',
+        city: 'Ivrea',
         job: 'Insurance consultant',
         description: '',
         type: 'beyond'
@@ -48,7 +53,8 @@ const experiences :ET.ExperienceTimelineItem[] = [
     {
         years: '2007 - 2013',
         Icon: SchoolIcon,
-        company: 'Universita degli Studi di Torino',
+        company: 'Università degli Studi di Torino',
+        city: '',
         job: 'Medicina e Chirurgia',
         description: 'Curricular exams and internships taken.',
         type: 'beyond'
@@ -57,6 +63,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         years: '2005',
         Icon: SchoolIcon,
         company: 'First (FCE)',
+        city: '',
         job: 'Cambridge Assessment English',
         description: '',
         type: 'beyond'
@@ -64,7 +71,8 @@ const experiences :ET.ExperienceTimelineItem[] = [
     {
         years: '2002 - 2007',
         Icon: SchoolIcon,
-        company: 'Liceo Scientifico Statale "A. Gramsci" - Ivrea',
+        company: 'Liceo Scientifico Statale "A. Gramsci"',
+        city: 'Ivrea',
         job: 'Scientific high school diploma',
         description: '',
         type: 'beyond'
