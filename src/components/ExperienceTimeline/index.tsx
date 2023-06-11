@@ -23,7 +23,7 @@ export type ExperienceTimelineItem = {
     city: string;
     job: string;
     description: string;
-    type: 'focusOn' | 'beyond';
+    type: 'primary' | 'secondary';
 }
 
 export const id: string = 'experience';
@@ -33,7 +33,7 @@ function ExperienceTimelineItem({ years, Icon, company, city, job, description, 
     const theme = useTheme();
 
     return (
-        <TimelineItem position={type === 'focusOn' ? 'left' : 'right'}>
+        <TimelineItem position={type === 'primary' ? 'left' : 'right'}>
             <TimelineOppositeContent
                 sx={{ m: 'auto 0' }}
                 align="right"
@@ -44,15 +44,16 @@ function ExperienceTimelineItem({ years, Icon, company, city, job, description, 
             </TimelineOppositeContent>
             <TimelineSeparator>
                 {!isTop && <TimelineConnector />}
-                <TimelineDot>
+                <TimelineDot color={type}>
                     <Icon />
                 </TimelineDot>
                 <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent sx={{ py: '12px', px: 2 }}>
-                <Typography sx={{ fontSize: useMediaQuery(theme.breakpoints.down('sm')) ? '1.1rem' : '1.25rem' }}>
-                    {company} {city !== '' && <Chip label={city} size="small"  />}
+                <Typography color={type} sx={{ fontSize: useMediaQuery(theme.breakpoints.down('sm')) ? '1.1rem' : '1.25rem' }}>
+                    {company}
                 </Typography>
+                {city !== '' && <Chip label={city} size="small" />}
                 <Typography>
                     {job}
                 </Typography>

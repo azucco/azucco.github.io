@@ -12,7 +12,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: 'Turin',
         job: 'Fullstack developer',
         description: 'JS, TypeScript, React, PHP, NodeJs, SQL, ORM, Docker, Sass',
-        type: 'focusOn'
+        type: 'primary'
     },
     {
         years: '2015 - today',
@@ -21,7 +21,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: '',
         job: 'Volunteering',
         description: '',
-        type: 'beyond'
+        type: 'secondary'
     },
     {
         years: '2018 - 2020',
@@ -30,7 +30,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: 'Ivrea',
         job: 'Fullstack developer',
         description: 'JS, PHP, SQL',
-        type: 'focusOn'
+        type: 'primary'
     },
     {
         years: '2017 - 2018',
@@ -39,7 +39,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: 'Ivrea',
         job: 'Tecnico Sviluppo software - JAVA, Oracle, HTML 5',
         description: 'JS, Java, SQL',
-        type: 'focusOn'
+        type: 'primary'
     },
     {
         years: '2015 - 2017',
@@ -48,7 +48,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: 'Ivrea',
         job: 'Insurance consultant',
         description: '',
-        type: 'beyond'
+        type: 'secondary'
     },
     {
         years: '2007 - 2013',
@@ -57,7 +57,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: '',
         job: 'Medicina e Chirurgia',
         description: 'Curricular exams and internships taken.',
-        type: 'beyond'
+        type: 'secondary'
     },
     {
         years: '2005',
@@ -66,7 +66,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: '',
         job: 'Cambridge Assessment English',
         description: '',
-        type: 'beyond'
+        type: 'secondary'
     },
     {
         years: '2002 - 2007',
@@ -75,7 +75,7 @@ const experiences :ET.ExperienceTimelineItem[] = [
         city: 'Ivrea',
         job: 'Scientific high school diploma',
         description: '',
-        type: 'beyond'
+        type: 'secondary'
     }
 ];
 
