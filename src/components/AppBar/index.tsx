@@ -125,7 +125,7 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
       transition: isTransitionEnabled ? 'background-color 0.5s' : '',
       backgroundImage: 'none'
     }}>
-      <Container maxWidth="xl">
+      <Container sx={{ maxWidth: '1430px!important' }}>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             {getSections().map((section) => (

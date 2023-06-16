@@ -47,7 +47,7 @@ function Title() {
             <Typography variant="h2">
                 Web developer
             </Typography>
-            <Typography variant="body1" color='secondary' sx={{ padding: '25px 0px 30px 0px' }}>
+            <Typography variant="h5" color='secondary' sx={{ padding: '25px 0px 30px 0px' }}>
                 <b>Turin</b> based. Born <b>January 28, 1988</b>.
                 <br />Web development enthusiast.
                 <br />Working as <b>fullstack developer</b> since 2018.
