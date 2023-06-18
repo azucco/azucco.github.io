@@ -31,10 +31,7 @@ const StyledRating = styled(
     },
     '& .MuiRating-iconFilled': {
       backgroundColor: color,
-    },
-    '& .MuiRating-iconEmpty': {
-      // backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    },
+    }
   }));
 
 const RatingElement = () => <div style={{ height: '10px' }}></div>

@@ -5,13 +5,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { BsLinkedin } from "react-icons/bs";
 import { Theme, useTheme } from '@mui/material/styles';
 import { styled, StyledCommonProps } from '@mui/material/styles';
@@ -23,7 +19,7 @@ type AppBarProps = {
   toggleColorMode: Function,
 }
 
-const Android12Switch: SwitchProps & StyledCommonProps<Theme> & { mode: string, theme: Theme } = styled(Switch, {
+const DarkModeSwitch: SwitchProps & StyledCommonProps<Theme> & { mode: string, theme: Theme } = styled(Switch, {
   shouldForwardProp: (prop) => prop !== "mode"
 })(({ mode, theme }: { mode: string, theme: Theme }) => ({
   padding: 8,
@@ -142,7 +138,7 @@ function ResponsiveAppBar({ sections, toggleColorMode }: AppBarProps) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={`Toggle ${theme.palette.mode === 'dark' ? 'light' : 'dark'} mode`}>
-              <Android12Switch mode={theme.palette.mode} disableRipple onClick={() => {
+              <DarkModeSwitch mode={theme.palette.mode} disableRipple onClick={() => {
                 setIsTransitionEnabled(false);
                 toggleColorMode();
               }} />

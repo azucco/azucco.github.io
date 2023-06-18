@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent, {
-    timelineOppositeContentClasses,
-} from '@mui/lab/TimelineOppositeContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 
 import * as data from '../../data';
@@ -65,12 +67,48 @@ function ExperienceTimelineItem({ years, Icon, company, city, job, description, 
     )
 }
 
+function ColorToggleButton() {
+  const [alignment, setAlignment] = useState('secondary');
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ) => {
+    setAlignment(newAlignment);
+  };
+
+  return (
+    <ToggleButtonGroup
+      color="primary"
+      value={alignment}
+      exclusive
+      onChange={handleChange}
+      aria-label="Platform"
+    >
+      <ToggleButton value="primary" sx={{ borderRadius: '25px' }} >Coding career</ToggleButton>
+      <ToggleButton value="secondary" sx={{ borderRadius: '25px' }}>...and beyond</ToggleButton>
+    </ToggleButtonGroup>
+  );
+}
+
 export function ExperienceTimeline() {
     return (
-        <Timeline>
-            {
-                data.experiences.map((experience, index) => <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
-            }
-        </Timeline>
+        <>
+            <AppBar 
+                position="sticky"
+                sx={{
+                // borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`,
+                backgroundColor: 'transparent',
+                // transition: isTransitionEnabled ? 'background-color 0.5s' : '',
+                // backgroundImage: 'none'
+            }}>
+                <ColorToggleButton/>
+            </AppBar>
+            <Timeline>
+                {
+                    data.experiences.map((experience, index) => <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
+                }
+            </Timeline>
+        </>
     )
 }
