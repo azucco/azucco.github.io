@@ -7,10 +7,10 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 import * as data from '../../data';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
@@ -26,6 +26,12 @@ export type ExperienceTimelineItem = {
     job: string;
     description: string;
     type: 'primary' | 'secondary';
+}
+
+type ETButtonProps = {
+    value: ExperienceTimelineItem['type'],
+    label: string,
+    isActive: boolean
 }
 
 export const id: string = 'experience';
@@ -67,46 +73,60 @@ function ExperienceTimelineItem({ years, Icon, company, city, job, description, 
     )
 }
 
-function ColorToggleButton() {
-  const [alignment, setAlignment] = useState('secondary');
-
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string,
-  ) => {
-    setAlignment(newAlignment);
-  };
-
-  return (
-    <ToggleButtonGroup
-      color="primary"
-      value={alignment}
-      exclusive
-      onChange={handleChange}
-      aria-label="Platform"
-    >
-      <ToggleButton value="primary" sx={{ borderRadius: '25px' }} >Coding career</ToggleButton>
-      <ToggleButton value="secondary" sx={{ borderRadius: '25px' }}>...and beyond</ToggleButton>
-    </ToggleButtonGroup>
-  );
-}
-
 export function ExperienceTimeline() {
+
+    const [buttons, setButtons] = useState<ETButtonProps[]>([
+        {
+            value: 'primary',
+            label: 'Coding career',
+            isActive: true
+        },
+        {
+            value: 'secondary',
+            label: '...and beyond',
+            isActive: false
+        },
+    ]);
+    const theme = useTheme();
+
+    const selectSection = (value: ETButtonProps['value']) => { // TODO: funcion type
+        setButtons(buttons.map(button => {
+            button.isActive = button.value === value;
+            return button;
+        }))
+    };
+
+    const isSectionActive = (value: ETButtonProps['value']) => { // TODO: funcion type
+        return buttons.some(button => button.value === value && button.isActive);
+    }
+
     return (
         <>
-            <AppBar 
+            <AppBar
                 position="sticky"
                 sx={{
-                // borderBottom: scrollTop === 0 ? 'none' : `solid 1px ${theme.palette.divider}`,
-                backgroundColor: 'transparent',
-                // transition: isTransitionEnabled ? 'background-color 0.5s' : '',
-                // backgroundImage: 'none'
-            }}>
-                <ColorToggleButton/>
+                    top: '69px',
+                    height: '69px',
+                    backgroundColor: theme.palette.background.default,
+                    backgroundImage: 'none'
+                }}>
+                <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+                    {
+                        buttons.map((button) =>
+                            <Button
+                                value={button.value}
+                                color={button.isActive ? 'primary' : 'secondary'}
+                                onClick={() => selectSection(button.value)}
+                                sx={{ my: 2 }}
+                            >
+                                {button.label}
+                            </Button>)
+                    }
+                </Box>
             </AppBar>
             <Timeline>
                 {
-                    data.experiences.map((experience, index) => <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
+                    data.experiences.map((experience, index) => (experience.type === 'primary' || isSectionActive(experience.type)) && <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
                 }
             </Timeline>
         </>
