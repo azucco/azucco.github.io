@@ -89,17 +89,6 @@ export function ExperienceTimeline() {
     ]);
     const theme = useTheme();
 
-    const selectSection = (value: ETButtonProps['value']) => { // TODO: funcion type
-        setButtons(buttons.map(button => {
-            button.isActive = button.value === value;
-            return button;
-        }))
-    };
-
-    const isSectionActive = (value: ETButtonProps['value']) => { // TODO: funcion type
-        return buttons.some(button => button.value === value && button.isActive);
-    }
-
     return (
         <>
             <AppBar
@@ -116,8 +105,7 @@ export function ExperienceTimeline() {
                             <Button
                                 value={button.value}
                                 color={button.isActive ? 'primary' : 'secondary'}
-                                onClick={() => selectSection(button.value)}
-                                sx={{ my: 2 }}
+                                sx={{ my: 2, pointerEvents: 'none' }}
                             >
                                 {button.label}
                             </Button>)
@@ -126,7 +114,7 @@ export function ExperienceTimeline() {
             </AppBar>
             <Timeline>
                 {
-                    data.experiences.map((experience, index) => (experience.type === 'primary' || isSectionActive(experience.type)) && <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
+                    data.experiences.map((experience, index) => <ExperienceTimelineItem {...experience} isTop={index === 0} key={index}></ExperienceTimelineItem>)
                 }
             </Timeline>
         </>
