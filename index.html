@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alessandro Zucco — Full Stack Developer</title>
+<meta name="description" content="Alessandro Zucco — Full Stack Developer based in Turin. PHP, JavaScript, and full-stack web development since 2018." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #18181b;
+    --muted: #6a6a72;
+    --faint: #97979e;
+    --bg: #ffffff;
+    --panel: #fbfbf9;
+    --rule: #e7e7e2;
+    --accent: #ffce00;         /* nod to the original CV's yellow */
+    --accent-ink: #1a1a1a;
+    --link: #1c1c1f;
+    --maxw: 760px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+  }
+
+  a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  a:hover { border-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  /* ---------- Header ---------- */
+  header { margin-bottom: 40px; }
+
+  .name {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 6vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0;
+    display: inline;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-position: 0 88%;
+    background-size: 100% 0.28em;
+  }
+
+  .role {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin: 18px 0 0;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    margin-top: 20px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .contact a { color: var(--muted); border: none; border-bottom: 1px solid transparent; }
+  .contact a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+  .contact .sep { width: 1px; height: 13px; background: var(--rule); display: inline-block; }
+
+  .actions { margin-top: 26px; }
+  .download {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+  }
+  .download:hover { filter: brightness(0.94); border: none; }
+  .download svg { width: 16px; height: 16px; }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 44px; }
+
+  .section-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .summary { font-size: 1.02rem; color: #2c2c30; margin: 0; }
+
+  /* ---------- Experience ---------- */
+  .job { margin-bottom: 34px; }
+  .job:last-child { margin-bottom: 0; }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2px 16px;
+  }
+  .job-title { font-weight: 600; font-size: 1.02rem; margin: 0; }
+  .job-org { font-weight: 600; }
+  .job-role { color: var(--muted); font-weight: 500; }
+  .job-dates { color: var(--faint); font-size: 0.88rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .job-context { color: #34343a; margin: 8px 0 0; }
+
+  .subhead {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 18px 0 2px;
+  }
+  .subnote { color: var(--muted); margin: 0 0 8px; font-size: 0.95rem; }
+
+  ul { margin: 8px 0 0; padding-left: 1.15em; }
+  li { margin: 6px 0; padding-left: 4px; }
+  li::marker { color: var(--accent); }
+
+  .meta {
+    margin-top: 14px;
+    padding: 11px 14px;
+    background: var(--panel);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .meta b { color: #45454c; font-weight: 600; }
+
+  /* ---------- Skills ---------- */
+  .skill-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 4px 20px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-label { font-weight: 600; font-size: 0.92rem; }
+  .skill-vals { color: #38383e; font-size: 0.95rem; }
+
+  /* ---------- Simple lists (beyond / education / languages) ---------- */
+  .entry { padding: 9px 0; border-bottom: 1px solid var(--rule); }
+  .entry:last-child { border-bottom: none; }
+  .entry-line { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; }
+  .entry-org { font-weight: 600; }
+  .entry-dates { color: var(--faint); font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+  .entry-desc { color: #38383e; }
+  .lang-line { padding: 7px 0; }
+  .lang-line b { font-weight: 600; }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    color: var(--faint);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 40px 20px 72px; }
+    .skill-row { grid-template-columns: 1fr; gap: 2px; }
+    .job-dates { font-size: 0.82rem; }
+  }
+
+  /* ---------- Print (Save as PDF) ---------- */
+  @media print {
+    :root { --maxw: 100%; }
+    body { font-size: 10.5pt; line-height: 1.4; }
+    .wrap { padding: 0; max-width: 100%; }
+    .actions, footer { display: none; }
+    a { color: var(--ink); border: none; }
+    .meta { background: transparent; }
+    section { margin-top: 20px; page-break-inside: avoid; }
+    .job { page-break-inside: avoid; }
+    .name { background-size: 100% 0.22em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1 class="name">Alessandro Zucco</h1>
+    <p class="role">Full Stack Developer</p>
+    <div class="contact">
+      <span>Turin</span>
+      <span class="sep"></span>
+      <a href="mailto:alessandro.zucco@gmail.com">alessandro.zucco@gmail.com</a>
+      <span class="sep"></span>
+      <a href="https://www.linkedin.com/in/alessandro-zucco-81b7b2137/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="actions">
+      <a class="download" href="cv.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </header>
+
+  <section aria-label="Profile">
+    <p class="summary">Full stack developer, Turin. Building for the web since 2018, mostly in PHP and JavaScript, across the full stack. I like clean, well-specified work, and I've made AI-assisted development part of my daily toolkit.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <p class="job-title"><span class="job-org">Mondadori Digital</span> — Turin (Hybrid) · <span class="job-role">Full Stack Developer</span></p>
+        <span class="job-dates">Oct 2023 – current</span>
+      </div>
+      <p class="job-context">Full stack developer working across two product areas of Mondadori Digital's digital media ecosystem.</p>
+
+      <p class="subhead">Altervista (WordPress-based hosting platform)</p>
+      <p class="subnote">Altervista's cooking blogs complement Mondadori Digital's food offering, alongside the GialloZafferano network.</p>
+      <ul>
+        <li>Maintain and extend a proprietary plugin pre-installed across Altervista's WordPress installations, tailoring the platform for editorial and food-blogging use in line with WordPress development best practices</li>
+        <li>Develop backend features in PHP and frontend in JavaScript and Gutenberg blocks, with unit tests covering part of the plugin's functionality</li>
+      </ul>
+
+      <p class="subhead">Digital media brands</p>
+      <p class="subnote">Mondadori Digital's portfolio of media brands spans several verticals, including GialloZafferano (food), MyPersonalTrainer (health and wellness) and Studenti.it (education).</p>
+      <ul>
+        <li>Own backend development end to end, gathering requirements from the project manager and product team and authoring the functional and technical specifications</li>
+        <li>Develop and maintain applications built on a proprietary PHP MVC framework with Smarty server-side templating; newer portals use a Next.js single-page frontend maintained by a dedicated frontend team</li>
+        <li>Design and develop the backend REST APIs consumed by the single-page applications</li>
+        <li>Implement asynchronous processing on Amazon SQS with cron-scheduled jobs and manage file storage on Amazon S3</li>
+      </ul>
+
+      <p class="meta"><b>Workflow &amp; environment:</b> Agile delivery with weekly sprints and daily stand-ups · spec-driven, AI-assisted development with Claude Code · automated PR security review (AWS Security Agent) · Dockerized development environments · Atlassian toolchain (Bitbucket, Jira, Confluence)</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <p class="job-title"><span class="job-org">Coolshop srl</span> — Turin · <span class="job-role">Full Stack Developer</span></p>
+        <span class="job-dates">2020 – Sep 2023</span>
+      </div>
+      <p class="job-context">Development and maintenance of a dealer portal for a US multinational leader in material-handling solutions.</p>
+      <ul>
+        <li>Built new full-stack features on the portal's microservices platform (Node.js, TypeScript, Express.js, TypeORM, MySQL) with a React frontend and Keycloak authentication, delivering modules such as lead management, notifications and order-complaint handling</li>
+        <li>Maintained the legacy catalog/configurator built on a custom PHP 8 MVC architecture (no framework) with MySQL and an AngularJS frontend, covering product configuration, quoting and ordering</li>
+      </ul>
+      <p class="meta"><b>Workflow &amp; environment:</b> fully dockerized · hosted on Azure · GitLab-based releases across staging, QA and production · Jira-managed process</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <p class="job-title"><span class="job-org">Netsurfing srl</span> — Ivrea · <span class="job-role">Full Stack Developer</span></p>
+        <span class="job-dates">2018 – 2020</span>
+      </div>
+      <p class="job-context">On-site consultant at Olivetti, working on an electronic-invoicing web application connected to Olivetti-branded cash registers.</p>
+      <ul>
+        <li>Built and maintained the web application as a full-stack developer, with PHP and JavaScript as the main languages</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Technical skills</h2>
+    <div class="skill-row"><div class="skill-label">Languages &amp; runtimes</div><div class="skill-vals">PHP, JavaScript, TypeScript, Node.js</div></div>
+    <div class="skill-row"><div class="skill-label">Frontend</div><div class="skill-vals">React, HTML5, CSS/Sass</div></div>
+    <div class="skill-row"><div class="skill-label">Backend &amp; APIs</div><div class="skill-vals">REST APIs, OpenAPI/Swagger, authentication &amp; authorization, message queues / asynchronous processing, WordPress plugin development, microservices, ORM</div></div>
+    <div class="skill-row"><div class="skill-label">Databases</div><div class="skill-vals">MySQL, relational data modeling, query optimization</div></div>
+    <div class="skill-row"><div class="skill-label">Cloud, DevOps &amp; tooling</div><div class="skill-vals">AWS (S3, SQS), Docker, Git, Bitbucket, GitLab, Jira</div></div>
+    <div class="skill-row"><div class="skill-label">Practices &amp; methodologies</div><div class="skill-vals">OOP, SOLID principles, design patterns (MVC)</div></div>
+    <div class="skill-row"><div class="skill-label">Ways of working</div><div class="skill-vals">Agile (weekly sprints, daily stand-ups), spec-driven &amp; AI-assisted development (Claude Code, plugins, MCP), automated PR security review (AWS Security Agent)</div></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Beyond web development</h2>
+    <div class="entry">
+      <div class="entry-line"><span class="entry-org">Alleanza Assicurazioni SpA</span><span class="entry-dates">2015–2017</span></div>
+      <div class="entry-desc">Insurance consultant</div>
+    </div>
+    <div class="entry">
+      <div class="entry-line"><span class="entry-org">University of Turin</span><span class="entry-dates">2007–2013</span></div>
+      <div class="entry-desc">Medicine and Surgery (coursework and clinical internships completed; degree not finalised)</div>
+    </div>
+    <div class="entry">
+      <div class="entry-line"><span class="entry-org">Gruppo Archeologico Torinese</span><span class="entry-dates">2015–current</span></div>
+      <div class="entry-desc">Board member of a cultural-heritage volunteer association (archaeological preservation and promotion)</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Education</h2>
+    <div class="entry">
+      <div class="entry-line"><span class="entry-org">C.IA.C. Formazione</span><span class="entry-dates">2017–2018</span></div>
+      <div class="entry-desc">Software Development (vocational training programme)</div>
+    </div>
+    <div class="entry">
+      <div class="entry-line"><span class="entry-org">Liceo Scientifico Statale "A. Gramsci", Ivrea</span><span class="entry-dates">2002–2007</span></div>
+      <div class="entry-desc">Scientific high school diploma</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Languages</h2>
+    <div class="lang-line"><b>Italian</b> — Native</div>
+    <div class="lang-line"><b>English</b> — B2 (CEFR)</div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Alessandro Zucco · Built with plain HTML &amp; CSS
+  </footer>
+
+</div>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
